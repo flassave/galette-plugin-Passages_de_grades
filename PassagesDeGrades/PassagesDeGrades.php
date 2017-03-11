@@ -54,7 +54,10 @@ require_once '_config.inc.php';
 //Chargement des fonctions
 include("includes/fonctions.inc.php");
 
-$id_adh = get_numeric_form_value('id_adh', '');
+//récupération du header de la page précédente
+$qstring = $_SERVER[HTTP_REFERER];
+
+$id_adh = $_GET['id_adh'];
 $dyn_fields = new DynamicFields();
 
 $deps = array(
@@ -84,6 +87,11 @@ $dynamic_fields = $dyn_fields->prepareForDisplay(
 $id_m = $member->id;
 $uv = new NotesPassagesDeGrades ((int)$id_adh);
 
+//Si appel depuis la liste adhérents, retour à la liste adhérents
+if (isset($_GET['enr']) AND $_GET['enr'] == 1){
+	header('location: '.$qstring);
+	die();
+}
 
 //Age
 $ageadh = $member->getage();
