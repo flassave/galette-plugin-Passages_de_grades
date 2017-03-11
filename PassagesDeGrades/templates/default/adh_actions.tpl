@@ -1,4 +1,4 @@
-<a href="{$galette_base_path}{$PassagesDeGrades_dir}PassagesDeGrades.php?id_adh={$member->id}">
+<a href="{$galette_base_path}{$PassagesDeGrades_dir}PassagesDeGrades.php?id_adh={$member->id}&enr=1">
    <img
       src="{$PassagesDeGrades_tpl_dir}images/icon-plugin.png"
       alt="{_T string="Notes UVS"}"
