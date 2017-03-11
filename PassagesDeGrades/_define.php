@@ -41,7 +41,7 @@ $this->register(
     'Frédéric LASSAVE',        //Author
     '1.0',                     //Version
     '0.8.2.3',                 //Galette compatible version
-    '2016-11-27',              //Release date
+    '2017-03-11',              //Release date
     null                       //Permissions needed - not yet implemented
 );
 
