@@ -39,7 +39,7 @@ $this->register(
     'Passages De Grades',  	   //Name
     'Notes UVs',  			   //Short description
     'Frédéric LASSAVE',        //Author
-    '1.0',                     //Version
+    '0.1',                     //Version
     '0.8.2.3',                 //Galette compatible version
     '2017-03-11',              //Release date
     null                       //Permissions needed - not yet implemented
