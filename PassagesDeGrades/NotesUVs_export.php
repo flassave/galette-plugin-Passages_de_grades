@@ -94,10 +94,14 @@ $alns = $pdg->getAllNotes();
 $allnote = array ();
 $notes = array();
 $labels = array(
+	'Nom complet',
 	'Nom',
+	'Prénom',
 	'Age',
 	'Date de naissance',
+	'id_grade',
 	'Grade',
+	'id_barrettes',
 	'Barrettes',
 	'Note UV1',
 	'Note UV2',
@@ -106,7 +110,9 @@ $labels = array(
 	'Note UV5',
 	'Note UV6',
 	'Moy.',
+	'Licence',
 );
+
 foreach ($alns as $key => $val){
 	
 	$m = new Adherent((int)$val[id_adh], $deps);
@@ -127,11 +133,35 @@ foreach ($alns as $key => $val){
 	
 //	$notes['id_adh'] = $val[id_adh];
 	$notes['sname'] = $m->sname;
+	$notes['name'] = $m->name;
+	$notes['surname'] = $m->surname;
 	$notes['age'] = $m->getage();
 	$notes['ddn'] = $m->birthdate;
+	//id_grade
+		$id_m = $m->id;
+		$select1 = $zdb->select(dynamic_fields);
+		$select1->where(array(field_id => 4, item_id => $id_m));
+		$result1 = $zdb->execute($select1);
+		$dfi = $result1->current();
+		$df_val = $dfi->field_val;
+		$notes['id_grade'] = $df_val;
+		
 	$notes['grade'] = $adherent['dyn'][4][1];
-	$notes['barrettes'] = $adherent['dyn'][35][1];
 	
+	//Barrettes
+		$select2 = $zdb->select(dynamic_fields);
+		$select2->where(array(field_id => 35, item_id => $id_m));
+		$result2 = $zdb->execute($select2);
+		$dfb = $result2->current();
+		$dfb_val = $dfb->field_val;
+		$notes['id_barrettes'] = $dfb_val;
+	
+	if ($adherent['dyn'][35][1] != "-" AND $adherent['dyn'][35][1] != ""){
+		$notes['barrettes'] = $adherent['dyn'][35][1];
+	} else {
+		$notes['barrettes'] = "";
+	}
+		
 	$ceinture = getCeinture($adherent['dyn'][4][1]);
 	
 //	$notes['ceinture'] = $ceinture;	
@@ -142,9 +172,11 @@ foreach ($alns as $key => $val){
 	$notes['uv5'] = $val['uv5'];
 	$notes['uv6'] = $val['uv6'];
 	$notes['moy'] = round((($val['uv1'] + $val['uv2'] + $val['uv3'] + $val['uv4'] + $val['uv5'] + $val['uv6'])/6), 2);
+	$notes['licence'] = $adherent['dyn'][33][1];
 	
 	$allnote[] = $notes;
 }
+
     $filename = 'NotesUVs_memberslist.csv';
     $filepath = CsvOut::DEFAULT_DIRECTORY . $filename;
     $fp = fopen($filepath, 'w');
@@ -166,8 +198,8 @@ foreach ($alns as $key => $val){
     if (file_exists(CsvOut::DEFAULT_DIRECTORY . $filename) ) {
         header('Content-Type: text/csv');
         header('Content-Disposition: attachment; filename="' . $filename . '";');
-        header('Pragma: no-cache');
-        readfile(CsvOut::DEFAULT_DIRECTORY . $filename);
+		header('Pragma: no-cache');
+		readfile(CsvOut::DEFAULT_DIRECTORY . $filename);
     } else {
         Analog::log(
             'A request has been made to get an exported file named `' .
