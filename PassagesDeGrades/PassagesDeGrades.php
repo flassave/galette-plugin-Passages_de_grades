@@ -55,7 +55,7 @@ require_once '_config.inc.php';
 include("includes/fonctions.inc.php");
 
 //récupération du header de la page précédente
-$qstring = $_SERVER[HTTP_REFERER];
+$qstring = $_SERVER['HTTP_REFERER'];
 
 $id_adh = $_GET['id_adh'];
 $dyn_fields = new DynamicFields();
