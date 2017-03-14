@@ -12,12 +12,18 @@
 
 <tbody>
 <tr><td>
-<img
-                        src="{$galette_base_path}picture.php?id_adh={$member->id}&amp;rand={$time}"
-                        width="84"
-                        height="100"
-                        alt="{_T string="Picture"}"
-                        id="photo_adh"/>&nbsp;&nbsp;<FONT SIZE="4"><u>{$member->sname}{if $member->company_name} ({$member->company_name}){/if}</u></FONT></td>
+		<img
+								src="{$galette_base_path}picture.php?id_adh={$member->id}&amp;rand={$time}"
+								width="84"
+								height="100"
+								alt="{_T string="Picture"}"
+								id="photo_adh"/>
+		{if $login->isAdmin() or $login->isStaff()}
+			&nbsp;&nbsp;<a href="{$galette_base_path}voir_adherent.php?id_adh={$member->id}"><FONT SIZE="4"><u>{$member->sname}{if $member->company_name} ({$member->company_name}){/if}</u></FONT></a>
+		{else}
+			&nbsp;&nbsp;<FONT SIZE="4"><u>{$member->sname}{if $member->company_name} ({$member->company_name}){/if}</u></FONT>
+		{/if}
+	</td>
 	<td><center>{$age}</center></td>
 	<td><center>
 		{$grade}</br>
