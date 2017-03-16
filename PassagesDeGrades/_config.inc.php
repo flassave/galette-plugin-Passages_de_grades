@@ -54,3 +54,4 @@ define('uv6','uv6');
 
 
 require_once 'classes/PassagesDeGrades.class.php';
+?>
