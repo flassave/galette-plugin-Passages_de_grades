@@ -312,8 +312,8 @@
 <div class="clear"></br></div>
 
 <div class="button-container">
-	<input type="submit" form='return' name="valid" id="btnreturn" value="{_T string="Return"}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" name="valid" id="btnsave" value="{_T string="Save"}"/>
+	<input type="submit" name="valid" id="btnsave" value="{_T string="Save"}"/></br></br></br>
+	<input type="submit" form='return' name="valid" id="btnreturn" value="{_T string="Return"}"/>
 </div>
 
 </form>
