@@ -54,6 +54,12 @@ require_once '_config.inc.php';
 //Chargement des fonctions
 include("includes/fonctions.inc.php");
 
+//Vérification isLogged
+if ( !$login->isLogged() ) {
+    header('location: ' . GALETTE_BASE_PATH . 'index.php');
+    die();
+}
+
 //récupération du header de la page précédente
 $qstring = $_SERVER['HTTP_REFERER'];
 
@@ -103,7 +109,7 @@ $ceinture = getCeinture($adherent['dyn'][4][1]);
 	
 //Récupération des données du formulaire PassagesDeGrades.tpl
 //Note UV1
-if (isset($_POST['val_uv1']) OR isset($_POST['val_uv2']) OR isset($_POANDST['val_uv3']) OR isset($_POST['val_uv4']) OR isset($_POST['val_uv5']) OR isset($_POST['val_uv6'])){
+if (isset($_POST['val_uv1']) OR isset($_POST['val_uv2']) OR isset($_POST['val_uv3']) OR isset($_POST['val_uv4']) OR isset($_POST['val_uv5']) OR isset($_POST['val_uv6'])){
 	
 	//On teste si la valeur est comprise entre 0 et 20
 	if (isset($_POST['val_uv1'])){
@@ -187,3 +193,5 @@ $tpl->assign('content', $content);
 //Set path to main Galette's template
 $tpl->template_dir = $orig_template_path;
 $tpl->display('page.tpl', PASSAGESDEGRADES_SMARTY_PREFIX);
+
+?>
