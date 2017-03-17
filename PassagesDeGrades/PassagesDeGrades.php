@@ -187,3 +187,5 @@ $tpl->assign('content', $content);
 //Set path to main Galette's template
 $tpl->template_dir = $orig_template_path;
 $tpl->display('page.tpl', PASSAGESDEGRADES_SMARTY_PREFIX);
+
+?>

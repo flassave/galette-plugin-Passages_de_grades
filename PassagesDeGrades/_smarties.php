@@ -39,3 +39,5 @@ $_tpl_assignments = array(
     'PassagesDeGrades_tpl_dir' => '__plugin_templates_dir__',
     'PassagesDeGrades_dir'     => '__plugin_dir__'
 );
+
+?>
