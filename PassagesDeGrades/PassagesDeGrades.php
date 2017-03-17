@@ -103,7 +103,7 @@ $ceinture = getCeinture($adherent['dyn'][4][1]);
 	
 //Récupération des données du formulaire PassagesDeGrades.tpl
 //Note UV1
-if (isset($_POST['val_uv1']) OR isset($_POST['val_uv2']) OR isset($_POANDST['val_uv3']) OR isset($_POST['val_uv4']) OR isset($_POST['val_uv5']) OR isset($_POST['val_uv6'])){
+if (isset($_POST['val_uv1']) OR isset($_POST['val_uv2']) OR isset($_POST['val_uv3']) OR isset($_POST['val_uv4']) OR isset($_POST['val_uv5']) OR isset($_POST['val_uv6'])){
 	
 	//On teste si la valeur est comprise entre 0 et 20
 	if (isset($_POST['val_uv1'])){
