@@ -14,9 +14,9 @@ function getCeinture($grade)
 		if ($grade == 'Blanche') {
 			$ceinture = "templates/default/images/ceinture_blanche.png";
 		} elseif ($grade == 'Blanche 1 liseré') {
-			$ceinture = "templates/default/images/ceinture_blanche_1_liseré.png";
+			$ceinture = "templates/default/images/ceinture_blanche_1_lise.png";
 		} elseif ($grade == 'Blanche 2 liserés') {
-			$ceinture = "templates/default/images/ceinture_blanche_2_liserés.png";
+			$ceinture = "templates/default/images/ceinture_blanche_2_lise.png";
 		}elseif ($grade == 'Blanche/Jaune') {
 			$ceinture = "templates/default/images/Ceinture_blanc_jaune.png";
 		} elseif ($grade == 'Jaune') {
