@@ -56,6 +56,12 @@ require_once '_config.inc.php';
 //Chargement des fonctions
 include("includes/fonctions.inc.php");
 
+//Vérification isLogged
+if ( !$login->isLogged() ) {
+    header('location: ' . GALETTE_BASE_PATH . 'index.php');
+    die();
+}
+
 $filters = new MembersList();
 
 //Contrôle check box ET bouton DELETE

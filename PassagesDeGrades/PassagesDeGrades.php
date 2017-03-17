@@ -54,6 +54,12 @@ require_once '_config.inc.php';
 //Chargement des fonctions
 include("includes/fonctions.inc.php");
 
+//Vérification isLogged
+if ( !$login->isLogged() ) {
+    header('location: ' . GALETTE_BASE_PATH . 'index.php');
+    die();
+}
+
 //récupération du header de la page précédente
 $qstring = $_SERVER['HTTP_REFERER'];
 
