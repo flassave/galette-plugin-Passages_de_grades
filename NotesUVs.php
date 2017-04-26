@@ -158,7 +158,10 @@ foreach ($alns as $key => $val){
 }
 
 //Moyenne Générale
-$mgle = round(($mg / $nb_members), 2);
+$mgle = 0;
+if ($nb_members > 0) {
+    $mgle = round(($mg / $nb_members), 2);
+}
 
 //Filtres affichages 
 $filter = array();
