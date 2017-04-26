@@ -130,7 +130,7 @@
 	{/if}
 	
 {foreachelse}
-                <tr><td colspan="7" class="emptylist">{_T string="No member has been found"}</td></tr>
+                <tr><td colspan="11" class="emptylist">{_T string="No member has been found"}</td></tr>
 	
 {/foreach}
             </tbody>
