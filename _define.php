@@ -34,25 +34,13 @@
  * @link      http://galette.eu
  * @since     Available since 0.8.2.3
  */
- 
-define('PLUGIN_PREFIX', 'PassagesDeGrades_');
-define('dynamic_fields', 'dynamic_fields');
-define('field_id', 'field_id');
-define('item_id', 'item_id');
-define('id', 'id');
-define('field_contents_4', 'field_contents_4');
-define('PassagesDeGrades_notes', 'PassagesDeGrades_notes');
-define('id_adh', 'id_adh');
-define('PASSAGESDEGRADES_SMARTY_PREFIX', 'plugins|PassagesDeGrades');
-define('uv1','uv1');
-define('uv2','uv2');
-define('uv3','uv3');
-define('uv4','uv4');
-define('uv5','uv5');
-define('uv6','uv6');
 
-
-
-require_once 'classes/PassagesDeGrades.class.php';
-
-?>
+$this->register(
+    'Passages De Grades',  	   //Name
+    'Notes UVs',  			   //Short description
+    'Frédéric LASSAVE',        //Author
+    '1.2.3',                   //Version
+    '0.8.2.3',                 //Galette compatible version
+    '2017-03-17',              //Release date
+    null                       //Permissions needed - not yet implemented
+);

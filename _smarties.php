@@ -34,15 +34,8 @@
  * @link      http://galette.eu
  * @since     Available since 0.8.2.3
  */
-
-$this->register(
-    'Passages De Grades',  	   //Name
-    'Notes UVs',  			   //Short description
-    'Frédéric LASSAVE',        //Author
-    '1.2.3',                   //Version
-    '0.8.2.3',                 //Galette compatible version
-    '2017-03-17',              //Release date
-    null                       //Permissions needed - not yet implemented
+ 
+$_tpl_assignments = array(
+    'PassagesDeGrades_tpl_dir' => '__plugin_templates_dir__',
+    'PassagesDeGrades_dir'     => '__plugin_dir__'
 );
-
-?>
