@@ -29,6 +29,9 @@
  * @since     Available since 0.8.2.3
  */
 
+use Zend\Db\Sql\Expression;
+use Galette\Entity\Adherent;
+
 /**
  * Class to store Member's points
  *
@@ -72,13 +75,13 @@ class NotesPassagesDeGrades {
                     $this->_loadFromRS($result->current());
 				} else {
 					$values = array (
-						$id_adh = $args,
-						$uv1 = NULL,
-						$uv2 = NULL,
-						$uv3 = NULL,
-						$uv4 = NULL,
-						$uv5 = NULL,
-						$uv6 = NULL,
+						Adherent::PK    => $args,
+						'uv1'           => new Expression('NULL'),
+						'uv2'           => new Expression('NULL'),
+						'uv3'           => new Expression('NULL'),
+						'uv4'           => new Expression('NULL'),
+						'uv5'           => new Expression('NULL'),
+						'uv6'           => new Expression('NULL'),
 					);
 					$insert = $zdb->insert(self::TABLE)
 							->values($values);

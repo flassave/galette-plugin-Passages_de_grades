@@ -36,11 +36,9 @@
  */
 
 use Galette\Entity\Adherent;
-use Galette\Entity\FieldsConfig;
 use Galette\Entity\Texts;
 use Galette\Repository\Members;
 use Galette\Repository\PdfModels;
-use Galette\Entity\DynamicFields;
 use Galette\Filters\MembersList;
 use Galette\Filters\AdvancedMembersList;
 
@@ -79,30 +77,6 @@ if ( isset($_POST['csv']) ) {
         header('location: '.$qstring);
         die();
 }
-		
-/*if (isset($_POST['attendance_sheet']) || isset($_POST['csv'])) {
-    if (isset($_POST['member_sel'])) {
-        $filters->selected = $_POST['member_sel'];
-		//cannot use $session here :/
-		$session['caller'] = 'NotesUVs.php';
-        $session['filters']['members'] = serialize($filters);
-        
-        if (isset($_POST['attendance_sheet'])) {
-            $qstring = 'NotesUVs_attendance_sheet.php';
-            if ( isset($_POST['wimages']) && $_POST['wimages'] == 1 ) {
-                $qstring .= '?wimages=1';
-            }
-        }
-        if ( isset($_POST['csv']) ) {
-            $qstring = 'NotesUVs_export.php';
-        }
-        header('location: '.$qstring);
-        die();
-    }
-}*/
-
-//$id_adh = get_numeric_form_value('id_adh', '');
-$dyn_fields = new DynamicFields();
 
 $deps = array(
     'picture'   => true,
@@ -121,24 +95,26 @@ $mg = 0;
 foreach ($alns as $key => $val){
 	
 	$m = new Adherent((int)$val[id_adh], $deps);
-	// flagging fields visibility
-	$fc = new FieldsConfig(Adherent::TABLE, $members_fields, $members_fields_cats);
-	$visibles = $fc->getVisibilities();
-	// declare dynamic field values
-	$adherent['dyn'] = $dyn_fields->getFields('adh', $alns[$key][id_adh], true);
-
-	// - declare dynamic fields for display
-	$disabled['dyn'] = array();
-	$dynamic_fields = $dyn_fields->prepareForDisplay(
-		'adh',
-		$adherent['dyn'],
-		$disabled['dyn'],
-		0
-	);
 	
 	$notes['id_adh'] = $val[id_adh];
 	$notes['sname'] = $m->sname;
-	$notes['age'] = $m->getage();
+	$notes['age'] = '';
+    if (method_exists($m, 'getAge')) {
+        $notes['age'] = $m->getAge();
+    } else {
+        if ($m->birthdate != null) {
+            $d = \DateTime::createFromFormat('Y-m-d', $m->birthdate);
+            if ($d !== false) {
+                $notes['age'] = str_replace(
+                    '%age',
+                    $d->diff(new \DateTime())->y,
+                    _T(' (%age years old)')
+                );
+            }
+        }
+    }
+
+
 	$notes['grade'] = $adherent['dyn'][4][1];
 	$notes['barrettes'] = $adherent['dyn'][35][1];
 	

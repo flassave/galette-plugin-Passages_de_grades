@@ -36,7 +36,6 @@
  */
 
 use Galette\Entity\Adherent;
-use Galette\Entity\FieldsConfig;
 use Galette\Entity\Texts;
 use Galette\Repository\Members;
 use Galette\Repository\PdfModels;
@@ -75,9 +74,6 @@ $deps = array(
 );
 $member = new Adherent((int)$id_adh, $deps);
 
-// flagging fields visibility
-$fc = new FieldsConfig(Adherent::TABLE, $members_fields, $members_fields_cats);
-$visibles = $fc->getVisibilities();
 // declare dynamic field values
 $adherent['dyn'] = $dyn_fields->getFields('adh', $id_adh, true);
 
@@ -100,7 +96,21 @@ if (isset($_GET['enr']) AND $_GET['enr'] == 1){
 }
 
 //Age
-$ageadh = $member->getage();
+$ageadh = '';
+if (method_exists($member, 'getAge')) {
+    $ageadh = $member->getAge();
+} else {
+    if ($member->birthdate != null) {
+        $d = \DateTime::createFromFormat('Y-m-d', $member->birthdate);
+        if ($d !== false) {
+            $ageadh = str_replace(
+                '%age',
+                $d->diff(new \DateTime())->y,
+                _T(' (%age years old)')
+            );
+        }
+    }
+}
 
 //Grade
 $grade = $adherent['dyn'][4][1];

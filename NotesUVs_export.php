@@ -39,7 +39,6 @@ use Analog\Analog;
 use Galette\IO\Csv;
 use Galette\IO\CsvOut;
 use Galette\Filters\MembersList;
-use Galette\Entity\FieldsConfig;
 use Galette\Entity\Adherent;
 use Galette\Entity\Status;
 use Galette\Entity\DynamicFields;
@@ -116,22 +115,9 @@ $labels = array(
 foreach ($alns as $key => $val){
 	
 	$m = new Adherent((int)$val[id_adh], $deps);
-	// flagging fields visibility
-	$fc = new FieldsConfig(Adherent::TABLE, $members_fields, $members_fields_cats);
-	$visibles = $fc->getVisibilities();
 	// declare dynamic field values
 	$adherent['dyn'] = $dyn_fields->getFields('adh', $alns[$key][id_adh], true);
 
-	// - declare dynamic fields for display
-	$disabled['dyn'] = array();
-	$dynamic_fields = $dyn_fields->prepareForDisplay(
-		'adh',
-		$adherent['dyn'],
-		$disabled['dyn'],
-		0
-	);
-	
-//	$notes['id_adh'] = $val[id_adh];
 	$notes['sname'] = $m->sname;
 	$notes['name'] = $m->name;
 	$notes['surname'] = $m->surname;
@@ -139,7 +125,7 @@ foreach ($alns as $key => $val){
 	$notes['ddn'] = $m->birthdate;
 	//id_grade
 		$id_m = $m->id;
-		$select1 = $zdb->select(dynamic_fields);
+		$select1 = $zdb->select(DynamicFields::TABLE);
 		$select1->where(array(field_id => 4, item_id => $id_m));
 		$result1 = $zdb->execute($select1);
 		$dfi = $result1->current();
@@ -149,7 +135,7 @@ foreach ($alns as $key => $val){
 	$notes['grade'] = $adherent['dyn'][4][1];
 	
 	//Barrettes
-		$select2 = $zdb->select(dynamic_fields);
+		$select2 = $zdb->select(DynamicFields::TABLE);
 		$select2->where(array(field_id => 35, item_id => $id_m));
 		$result2 = $zdb->execute($select2);
 		$dfb = $result2->current();
@@ -211,7 +197,7 @@ foreach ($alns as $key => $val){
 } else {
     Analog::log(
         'A non authorized person asked to retrieve exported file named `' .
-        $filename . '`. Access ha not been granted.',
+        $filename . '`. Access has not been granted.',
         Analog::WARNING
     );
     header('HTTP/1.0 403 Forbidden');
