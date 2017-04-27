@@ -2,11 +2,10 @@
 
 /**
  * Public Class PassagesDeGrades
- * 
  *
  * PHP version 5
  *
- * Copyright © 2011 Mélissa Djebel
+ * Copyright © 2016 Frédéric LASSAVE
  *
  * This file is part of Galette (http://galette.tuxfamily.org).
  *
@@ -19,15 +18,17 @@
  * along with Galette. If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Plugins
- * @package   PassagesDeGrades
+ * @package   GaletteGrades
  *
  * @author    Frédéric LASSAVE <f.lassave@free.fr>
- * @copyright 2011 Mélissa Djebel
+ * @copyright 2016 Frédéric LASSAVE
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPL License 3.0 or (at your option) any later version
  * @version   SVN: $Id$
  * @link      http://galette.tuxfamily.org
  * @since     Available since 0.8.2.3
  */
+
+namespace GaletteGrades;
 
 use Zend\Db\Sql\Expression;
 use Galette\Entity\Adherent;
@@ -36,7 +37,7 @@ use Galette\Entity\Adherent;
  * Class to store Member's points
  *
  **/
-class NotesPassagesDeGrades {
+class Notes {
 
     const TABLE = 'PassagesDeGrades_notes';
     const PK = 'id_adh';
@@ -123,7 +124,7 @@ class NotesPassagesDeGrades {
 
         try {
             $select = $zdb->select(self::TABLE)
-                    ->columns(array('nb' => new Zend\Db\Sql\Predicate\Expression('count(*)')));
+                    ->columns(array('nb' => new Expression('count(*)')));
 
             $result = $zdb->execute($select);
             return $result->current()->nb;

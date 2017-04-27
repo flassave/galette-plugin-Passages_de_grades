@@ -36,8 +36,8 @@
  */
 
 $this->register(
-    'Passages De Grades',  	   //Name
-    'Notes UVs',  			   //Short description
+    'Galette Grades',  	   //Name
+    'Passage de grades - Notes UVs',  			   //Short description
     'Frédéric LASSAVE',        //Author
     '1.2.3',                   //Version
     '0.8.2.3',                 //Galette compatible version

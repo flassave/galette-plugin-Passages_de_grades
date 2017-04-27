@@ -6,7 +6,7 @@
  *
  * PHP version 5
  *
- * Copyright © 2011 Mélissa Djebel
+ * Copyright © 2016 Frédéric LASSAVE
  *
  * This file is part of Galette (http://galette.tuxfamily.org).
  *
@@ -19,15 +19,17 @@
  * along with Galette. If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Plugins
- * @package   Grades
+ * @package   GaletteGrades
  *
  * @author    Frédéric LASSAVE <f.lassave@free.fr>
- * @copyright 2011 Mélissa Djebel
+ * @copyright 2016 Frédéric LASSAVE
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPL License 3.0 or (at your option) any later version
  * @version   SVN: $Id$
  * @link      http://galette.tuxfamily.org
  * @since     Available since 0.8.2.3
  */
+
+namespace GaletteGrades;
 
 /**
  * Class to store Grades

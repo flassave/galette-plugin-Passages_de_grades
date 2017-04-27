@@ -35,6 +35,7 @@
  * @since     Available since 0.8.2.3
  */
 
+use GaletteGrades\Notes;
 use Galette\Entity\Adherent;
 use Galette\Entity\Texts;
 use Galette\Repository\Members;
@@ -66,7 +67,7 @@ $filters = new MembersList();
 if (isset($_POST['delete']) AND isset($_POST['member_sel'])) {
 	foreach($_POST['member_sel'] as $del){
 		$id = (int)$del;
-		$dels = new NotesPassagesDeGrades($id);
+		$dels = new GaletteGrades\Notes($id);
 		$dels->remove();
 	}
 }
@@ -86,7 +87,7 @@ $deps = array(
     'children'  => true
 );
 
-$pdg = new NotesPassagesDeGrades ();
+$pdg = new Notes();
 $alns = $pdg->getAllNotes();
 $nb_members = $pdg->getNombreEleves();
 $allnote = array ();

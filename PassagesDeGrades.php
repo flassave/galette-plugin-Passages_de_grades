@@ -87,7 +87,7 @@ $dynamic_fields = $dyn_fields->prepareForDisplay(
 );
 
 $id_m = $member->id;
-$uv = new NotesPassagesDeGrades ((int)$id_adh);
+$uv = new GaletteGrades\Notes((int)$id_adh);
 
 //Si appel depuis la liste adhérents, retour à la liste adhérents
 if (isset($_GET['enr']) AND $_GET['enr'] == 1){

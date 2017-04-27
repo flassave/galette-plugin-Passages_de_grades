@@ -88,7 +88,7 @@ $deps = array(
     'children'  => false
 );
 
-$pdg = new NotesPassagesDeGrades ();
+$pdg = new GaletteGrades\Notes();
 $alns = $pdg->getAllNotes();
 $allnote = array ();
 $notes = array();

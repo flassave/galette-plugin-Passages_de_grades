@@ -50,5 +50,3 @@ define('uv3','uv3');
 define('uv4','uv4');
 define('uv5','uv5');
 define('uv6','uv6');
-
-require_once 'classes/PassagesDeGrades.class.php';
