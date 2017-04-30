@@ -121,7 +121,21 @@ foreach ($alns as $key => $val){
 	$notes['sname'] = $m->sname;
 	$notes['name'] = $m->name;
 	$notes['surname'] = $m->surname;
-	$notes['age'] = $m->getage();
+	$notes['age'] = '';
+    if (method_exists($m, 'getAge')) {
+        $notes['age'] = $m->getAge();
+    } else {
+        if ($m->birthdate != null) {
+            $d = \DateTime::createFromFormat('Y-m-d', $m->birthdate);
+            if ($d !== false) {
+                $notes['age'] = str_replace(
+                    '%age',
+                    $d->diff(new \DateTime())->y,
+                    _T(' (%age years old)')
+                );
+            }
+        }
+    }
 	$notes['ddn'] = $m->birthdate;
 	//id_grade
 		$id_m = $m->id;
