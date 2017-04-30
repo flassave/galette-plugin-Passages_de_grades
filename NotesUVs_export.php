@@ -81,11 +81,11 @@ if ( $login->isAdmin() || $login->isStaff() ) {
 $dyn_fields = new DynamicFields();
 
 $deps = array(
-    'picture'   => true,
-    'groups'    => true,
-    'dues'      => true,
-    'parent'    => true,
-    'children'  => true
+    'picture'   => false,
+    'groups'    => false,
+    'dues'      => false,
+    'parent'    => false,
+    'children'  => false
 );
 
 $pdg = new NotesPassagesDeGrades ();
