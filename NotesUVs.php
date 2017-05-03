@@ -42,6 +42,7 @@ use Galette\Repository\Members;
 use Galette\Repository\PdfModels;
 use Galette\Filters\MembersList;
 use Galette\Filters\AdvancedMembersList;
+use Galette\Entity\DynamicFields;
 
 
 define('GALETTE_BASE_PATH', '../../');
@@ -93,6 +94,8 @@ $nb_members = $pdg->getNombreEleves();
 $allnote = array ();
 $notes = array();
 $mg = 0;
+$dyn_fields = new DynamicFields();
+
 foreach ($alns as $key => $val){
 	
 	$m = new Adherent((int)$val[id_adh], $deps);
@@ -115,6 +118,8 @@ foreach ($alns as $key => $val){
         }
     }
 
+    // declare dynamic field values
+    $adherent['dyn'] = $dyn_fields->getFields('adh', $alns[$key][id_adh], true);
 
 	$notes['grade'] = $adherent['dyn'][4][1];
 	$notes['barrettes'] = $adherent['dyn'][35][1];
